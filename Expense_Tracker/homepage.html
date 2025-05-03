@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Khula:wght@300;400;600;700;800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Lato", sans-serif;
+        }
+
+        body {
+            background-color: #F5F5F5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .main-wrapper {
+            background-color: #66D2CE;
+            width: 100%;
+            max-width: 430px;
+            margin: auto;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #66D2CE;
+            padding: 15px; 
+            margin: 15px; 
+            }
+
+            .header h1 {
+            font-size: 24px; 
+            margin: 0; 
+            }
+
+            .icons {
+            display: flex;
+            gap: 8px; 
+            }
+
+            .header img {
+            width: 24px; 
+            height: auto;
+            }
+
+        .expenses {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .title {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 10px auto;
+            width: 80%;
+        }
+
+        .progress-label, .total-label {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 12px;
+            background: #eee;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: black;
+            border-radius: 10px;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: bolder;
+            margin-bottom: 15px;
+        }
+
+        .check-icon {
+            width: 30px;
+            height: auto;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 20px;
+            justify-content: center;
+            background-color: white;
+            border-radius: 60px 60px 0 0;
+            padding: 40px 20px;
+            margin: 0 auto;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        .box1 img, .box2 img, .row img {
+            width: 40px;
+            height: 50px;
+        }
+        .box1{
+            background-color: #51DE9A;
+            border-radius: 25px;
+            color: white;
+            box-sizing: border-box;
+            padding: 10px;
+            height: 160px;
+            width: 100%;
+            margin-top: 10px;
+            font-size: medium;
+        }
+         .box2 {
+            display: flex;
+            background-color: #51DE9A;
+            border-radius: 20px;
+            padding: 15px;
+            color: white;
+            width: 100%;
+            max-width: 360px;
+            justify-content: space-between;
+            align-items: center;
+}
+
+        .left-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 50%;
+            text-align: center;
+}
+
+        .progress-circle {
+            width: 45px;
+            height: 45px;
+            background: conic-gradient(#004D40 40%, white 40%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 10px;
+        }
+
+        .divider {
+            width: 2px;
+            height: 100%;
+            background-color: white;
+            margin: 0 10px;
+        }
+
+        .right-section {
+            flex: 1;
+            text-align: left;
+        }
+
+        .expense {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        hr {
+            border: 0.5px solid white;
+            width: 100%;
+            margin: 5px 0;
+        }
+        .filter-button{
+            padding: 10px;
+            background-color: white;
+        }
+        .bottom {
+            margin-top: -30px;
+            border-radius: 10px;
+            padding: 5px;
+            background-color: #66D2CE;
+        }
+        .filter-btn {
+            
+            background-color: #51DE9A;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 0 27px;
+        }
+
+        .filter-btn:hover {
+            background-color: #3cb67d;
+        }
+        .white-bottom {
+            background: white;
+            padding: 0px;
+        }
+        .transactions {
+            background: white;
+            padding: 10px; 
+            max-height: 300px;
+            overflow-y: auto; 
+        }
+        .transaction {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .transaction:last-child {
+            border-bottom: none;
+        }
+
+        .transaction-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .transaction-icon-wrapper {
+            border-radius: 10px;
+            padding: 10px;
+            margin-left: 10px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .transaction-icon-wrapper img {
+            max-width: 340px;
+            max-height: 50px;
+        }
+
+        .transaction-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .transaction-name {
+            font-weight: bold;
+            font-size: 16px;
+            color: #000000;
+            margin-bottom: 2px; 
+        }
+
+        .transaction-date {
+            font-size: 12px;
+            color: #51DE9A;
+        }
+
+        .transaction-amount {
+            font-weight: bolder;
+            font-size: 20px;
+            color: #51DE9A;
+        }
+        hr.transaction {
+            border: none; 
+            border-right: 1px solid #51DE9A; 
+            height: 45px; 
+            margin: 0 70px; 
+            margin-top: -30px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-around;
+            background: #F1FCF6;
+            border: 2px solid #66D2CE;
+            padding: 15px 20px;
+            border-radius: 30px 30px 0 0; /* Round the top corners only */
+            margin-bottom: -10px;
+            margin-left: 0; 
+            margin-right: 0;
+            width: 430px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .footer img{
+            max-width: 28px;
+            max-height: 28px;
+            margin-bottom: 3px;
+            transition: background-color 0.3s ease;
+        }
+        .footer img:hover{
+            background-color: #51DE9A ;
+            border-radius: 4px;
+        }
+        @media screen and (max-width: 480px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                margin: 10px;
+            }
+
+            .progress-container {
+                width: 90%;
+            }
+
+            .container {
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+            }
+
+            .box1,
+            .box2 {
+                width: 100%;
+            }
+
+            .footer {
+                flex-wrap: wrap;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="header">
+            <h1>Hello, Welcome</h1>
+            <div class="icons">
+                <img src="notiflogo.png" alt="Notification Icon">
+                <img src="miclogo.png" alt="Microphone Icon">
+            </div>
+        </div>
+        <div class="expenses">
+            <p class="title">Total Expenses</p>
+            <h2 class="amount">&#8369; 9,670.00</h2>
+            <div class="progress-container">
+                <span class="progress-label">35%</span>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 35%;"></div>
+                </div>
+                <span class="total-label">&#8369; 50,000.00</span>
+            </div>
+            <div class="status">
+                <img src="check.png" alt="Check Icon" class="check-icon">
+                <p>35% Of Your Expenses, Looks Good</p>
+            </div>
+        </div>    
+        <div class="container">
+            <div class="box1">
+                <img src="cash.png" alt="Cash"/>
+                <p>Cash:</p>
+                <h3>&#8369; 40,330.00</h3>
+            </div>
+
+            <div class="box2">
+                <div class="left-section">
+                    <div class="progress-circle">
+                        <span>40%</span>
+                    </div>
+                    <p>Savings on Goals</p>
+                </div>
+                <div class="divider"></div>
+                <div class="right-section">
+                    <p class="title">Last month:</p>
+                    <div class="expense">
+                        <img src="cash.png" alt="wallet icon" class="icon"/>
+                        <span>&#8369; 32,530.00</span>
+                    </div>
+                    <hr>
+                    <div class="expense">
+                        <img src="fork.png" alt="food icon" class="icon"/>
+                        <span>&#8369; 12,000.00</span>
+                    </div>
+                </div>      
+            </div>
+        </div>
+        <div class="filter-button">
+            <div class="bottom" id="filter">
+                    <button class="filter-btn">Daily</button>
+                    <button class="filter-btn">Weekly</button>
+                    <button class="filter-btn">Monthly</button>
+            </div>
+        </div>
+        <div class="white-bottom">
+            <div class="transactions">
+                <div class="transaction">
+                <div class="transaction-info">
+                    <div class="transaction-icon-wrapper">
+                    <img src="rent.png" alt="Rent">
+                    </div>
+                    <div class="transaction-details">
+                    <p class="transaction-name">Rent</p>
+                    <p class="transaction-date">16:00 - Jan 22</p>
+                    <hr class="transaction">
+                    </div>                
+                </div>
+                <span class="transaction-amount">&#8369; 3,500.00</span>
+                </div>
+                <div class="transaction">
+                <div class="transaction-info">
+                    <div class="transaction-icon-wrapper">
+                    <img src="shopping.png" alt="Shopping">
+                    </div>
+                    <div class="transaction-details">
+                    <p class="transaction-name">Shopping</p>
+                    <p class="transaction-date">14:00 - Jan 20</p>
+                    <hr class="transaction">
+                    </div>
+                </div>
+                <span class="transaction-amount">&#8369; 1,980.00</span>
+                </div>
+                <div class="transaction">
+                <div class="transaction-info">
+                    <div class="transaction-icon-wrapper">
+                    <img src="transportation.png" alt="Transportation">
+                    </div>
+                    <div class="transaction-details">
+                    <p class="transaction-name">Transportation</p>
+                    <p class="transaction-date">14:00 - Jan 20</p>
+                    <hr class="transaction">
+                    </div>
+                </div>
+                <span class="transaction-amount">&#8369; 500.00</span>
+                </div>
+                <div class="transaction">
+                <div class="transaction-info">
+                    <div class="transaction-icon-wrapper">
+                    <img src="food.png" alt="Food">
+                    </div>
+                    <div class="transaction-details">
+                    <p class="transaction-name">Food</p>
+                    <p class="transaction-date">8:00 - Jan 20</p>
+                    <hr class="transaction">
+                    </div>
+                </div>
+                <span class="transaction-amount">&#8369; 1,200.00</span>
+                </div>
+                <div class="transaction">
+                    <div class="transaction-info">
+                        <div class="transaction-icon-wrapper">
+                        <img src="food.png" alt="Food">
+                        </div>
+                        <div class="transaction-details">
+                        <p class="transaction-name">Food</p>
+                        <p class="transaction-date">8:00 - Jan 20</p>
+                        <hr class="transaction">
+                        </div>
+                    </div>
+                    <span class="transaction-amount">&#8369; 1,200.00</span>
+                </div>
+
+            </div>
+            <div class="footer">
+                <img src="home.png" alt="Home">
+                <img src="analysis.png" alt="Analysis">
+                <img src="scanner.png" alt="Scanner">
+                <img src="manual record.png" alt="Manual record">
+                <img src="profile.png" alt="Profile">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

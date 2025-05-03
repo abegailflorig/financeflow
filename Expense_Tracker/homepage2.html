@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #66D2CE;
+        }
+        .header {
+            background: #66D2CE;
+            padding: 20px;
+            text-align: center;
+        }
+        .total-expenses {
+            text-align: center;
+            padding: 20px;
+        }
+        .progress-bar {
+            background: white;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+        .progress {      
+            height: 100%;
+            width: 35%;
+            background: black;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            background-color: white;
+            border-radius: 20px;
+            padding: 15px;
+            margin: 0 auto;
+            width: 90%;
+        }
+        .box {
+            background-color: #51DE9A;
+            border-radius: 15px;
+            padding: 15px;
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            color: white;
+            position: relative;
+        }
+        .box img {
+            width: 20px;
+            height: 20px;
+            margin-bottom: 5px;
+        }
+        .savings-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .last-month {
+            font-size: 12px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .last-month img {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+        }
+        .transactions {
+            background: white;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .transaction {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .transaction:last-child {
+            border-bottom: none;
+        }
+        .footer {
+            display: flex;
+            justify-content: space-around;
+            background: #28b485;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        .footer div {
+            text-align: center;
+            color: white;
+        }
+        select {
+            width: 100%;
+            padding: 5px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Hello, Welcome</h1>
+        <div class="total-expenses">
+            <h3>Total Expenses</h3>
+            <h2>&#8369; 9,670.00</h2>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <p>35% Of Your Expenses, Looks Good</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="box">
+            <img src="cash.png" alt="Cash"/>
+            <p>Cash:</p>
+            <h3>&#8369; 40,330.00</h3>
+        </div>
+        <div class="box">
+            <div class="savings-container">
+                <img src="savings-logo.png" alt="Savings" />
+                <p>Savings on Goals:</p>
+                <h3>&#8369; 12,000.00</h3>
+            </div>
+            <div class="last-month">
+                <img src="cash.png" alt="cash">
+                <p>Last Month: &#8369; 32,530.00</p>
+            </div>
+            <div class="last-month">
+                <img src="food.png" alt="food">
+                <p>Food: &#8369; 12,000.00</p>
+            </div>
+        </div>
+    </div>
+    <div class="transactions">
+        <select id="filter">
+            <option>Recent</option>
+            <option>Past day</option>
+        </select>
+        <div class="transaction"><span>Rent</span><span>&#8369; 3,500.00</span></div>
+        <div class="transaction"><span>Shopping</span><span>&#8369; 1,980.00</span></div>
+        <div class="transaction"><span>Transportation</span><span>&#8369; 500.00</span></div>
+        <div class="transaction"><span>Food</span><span>&#8369; 1,200.00</span></div>
+    </div>
+    <div class="footer">
+        <div>Home</div>
+        <div>Stats</div>
+        <div>Budget</div>
+        <div>Profile</div>
+    </div>
+</body>
+</html>
